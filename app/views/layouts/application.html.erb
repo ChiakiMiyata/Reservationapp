@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <header>
+      <h1><%= link_to "トップ", users_top_path, class:"link" %></h1>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "アカウント設定", user_path(id: current_user.id), class:"link" %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"link" %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "サインアップ", new_user_registration_path, class:"link" %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path, class:"link" %>
+        </li>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
